@@ -1,0 +1,41 @@
+x = [1, 1, 0, 0]
+y = [1, 0, 1, 0]
+
+target = [0, 1, 1, 0]
+
+weightArray = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+
+found = 0
+
+
+def isPoss(w1, w2)
+    minOne = 10000000
+    maxZero = -10000000
+    for i in range(0, 4)
+        if target[i] == 1
+            minOne = min(minOne, w1x[i] + w2y[i])
+        else
+            maxZero = max(maxZero, w1x[i] + w2y[i])
+
+    if minOne  maxZero
+        return minOne
+
+    return -10000000
+
+
+for i in weightArray
+    for j in weightArray
+        isPossVal = isPoss(i, j)
+        if isPossVal != -10000000
+            found = 1
+            print(Weights are )
+            print(w1 , i)
+            print(w2 , j)
+            print(Threshold , isPossVal)
+            break
+    if found == 1
+        break
+
+if found == 0
+    print(Not possible to represent)
+

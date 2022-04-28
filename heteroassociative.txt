@@ -1,0 +1,43 @@
+import numpy as np
+
+
+def activationFunction(x):
+    for i in range(len(x)):
+        for j in range(len(x[0])):
+            if x[i][j] > 0:
+                x[i][j] = 1
+            elif x[i][j] == 0:
+                x[i][j] = 0
+            else:
+                x[i][j] = -1
+    return x
+
+
+def inputVector(inputStatement):
+    return list(map(int, input(inputStatement).split()))
+
+
+n = int(input("Enter the size of training inputs: "))
+o = int(input("Enter the size of training outputs: "))
+m = int(input("Enter the no. of tranining inputs: "))
+
+weight = np.zeros((n,o))
+
+for i in range(m):
+    x = [inputVector("Enter the input: ")]
+    y = [inputVector("Enter the output: ")]
+#     weight = addMatrix(weight, multiplyMatrix(transposeMatrix(x), y))
+    weight = np.add(weight, np.multiply(np.transpose(x),y))
+
+wantMore = True
+
+while wantMore:
+    testX = [inputVector("Enter the testing vector: ")]
+#     final = activationFunction(multiplyMatrix(testX, weight))
+    final = activationFunction(np.multiply(testX,weight))
+    print(final)
+    ch = input("Want more? ")
+    if ch == "y":
+        wantMore = True
+    else:
+        wantMore = False

@@ -1,0 +1,36 @@
+x = [1, 1, -1, -1]
+y = [1, -1, 1, -1]
+
+target = [1, -1, -1, -1]
+
+w1 = 0
+w2 = 0
+b = 0
+
+error = 100000000
+
+learning_rate = 1
+
+while error > 0:
+    tempError = 0
+    for i in range(0, 4):
+        yin = w1*x[i] + w2*y[i] + b
+        if yin > 0:
+            yin = 1
+        elif yin < 0:
+            yin = -1
+        else:
+            yin = 0
+
+        tempError += (target[i]-yin)*(target[i]-yin)
+
+        w1 = w1 + x[i]*(target[i]-yin)*learning_rate
+        w2 = w2 + y[i]*(target[i]-yin)*learning_rate
+        b = b + (target[i]-yin)*learning_rate
+
+    error = tempError
+
+print("Weights are: ")
+print("w1: ", w1)
+print("w2: ", w2)
+print("b: ", b)

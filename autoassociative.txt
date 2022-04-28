@@ -1,0 +1,43 @@
+# # input('Input de de be') '1 0 0 0'
+# input('Input de de be').split() ['1' '0' '0' '0']
+# map(int, input('Input de de be').split()) map_object[1 0 0 0]
+# list(map(int, input('Input de de be').split())) list[1 0 0 0]
+
+import numpy as np
+def listInput(printStatement):
+  return list(map(int, input(printStatement).strip().split()))
+
+
+def f(yin):
+  if yin >= 0:
+    return 1
+  return -1
+
+
+# main code
+n = int(input('Enter number of input features: '))
+
+W = np.zeros((n,n))
+
+# W = summation of (s.transpose * t)
+p = int(input('Enter number of training pairs: '))
+print('Enter training pairs: ')
+for i in range(p):
+  s = [listInput('Enter input: ')]
+  W = np.add(W,np.multiply(np.transpose(s),s))  
+#   W = addMatrix(W, matrixMultiply(transpose(s), s))
+
+
+print('Weight matrix: ', W)
+
+checkMore = True
+while checkMore:
+  X = [listInput('Enter input vector: ')]
+  Y = np.multiply(X,W)
+
+  for i1 in range(len(Y)):
+    for i2 in range(len(Y[0])):
+      Y[i1][i2] = f(Y[i1][i2])
+  print('Output: ', Y)
+
+  checkMore = input('Check more?: ') == 'y'
